@@ -13,16 +13,17 @@ A distributed multi-agent system implementing the Model Context Protocol (MCP) l
 
 1. [Overview](#overview)
 2. [Features](#features)
-3. [System Requirements](#system-requirements)
-4. [Installation](#installation)
-5. [Project Structure](#project-structure)
-6. [Configuration](#configuration)
-7. [Usage](#usage)
-8. [Testing](#testing)
-9. [Architecture](#architecture)
-10. [Troubleshooting](#troubleshooting)
-11. [Contributing](#contributing)
-12. [License](#license)
+3. [Documentation](#documentation)
+4. [System Requirements](#system-requirements)
+5. [Installation](#installation)
+6. [Project Structure](#project-structure)
+7. [Configuration](#configuration)
+8. [Usage](#usage)
+9. [Testing](#testing)
+10. [Architecture](#architecture)
+11. [Troubleshooting](#troubleshooting)
+12. [Contributing](#contributing)
+13. [License](#license)
 
 ---
 
@@ -87,6 +88,64 @@ The MCP Even/Odd League is a sophisticated multi-agent system demonstrating:
    - Execute strategies (random, pattern-based, or LLM-driven)
    - Maintain match history
    - Adapt to opponents
+
+---
+
+## Documentation
+
+Comprehensive documentation is available in the `doc/` directory:
+
+### Protocol Specification
+- **[doc/protocol-spec.md](doc/protocol-spec.md)** - Complete league.v2 protocol specification
+  - Message envelope format and required fields
+  - All 16 core message types with field descriptions
+  - Error codes and handling guidelines
+  - Timeout values and retry policies
+  - Authentication and security
+  - JSON-RPC 2.0 transport details
+
+### Message Examples
+Example JSON messages for all 16 protocol message types in `doc/message-examples/`:
+
+- **Registration** (4 messages)
+  - [referee_register_request.json](doc/message-examples/registration/referee_register_request.json)
+  - [referee_register_response.json](doc/message-examples/registration/referee_register_response.json)
+  - [league_register_request.json](doc/message-examples/registration/league_register_request.json)
+  - [league_register_response.json](doc/message-examples/registration/league_register_response.json)
+
+- **Round Management** (2 messages)
+  - [round_announcement.json](doc/message-examples/round-management/round_announcement.json)
+  - [round_completed.json](doc/message-examples/round-management/round_completed.json)
+
+- **Game Flow** (5 messages)
+  - [game_invitation.json](doc/message-examples/game-flow/game_invitation.json)
+  - [game_join_ack.json](doc/message-examples/game-flow/game_join_ack.json)
+  - [choose_parity_call.json](doc/message-examples/game-flow/choose_parity_call.json)
+  - [choose_parity_response.json](doc/message-examples/game-flow/choose_parity_response.json)
+  - [game_over.json](doc/message-examples/game-flow/game_over.json)
+
+- **League Management** (3 messages)
+  - [match_result_report.json](doc/message-examples/league-management/match_result_report.json)
+  - [league_standings_update.json](doc/message-examples/league-management/league_standings_update.json)
+  - [league_completed.json](doc/message-examples/league-management/league_completed.json)
+
+- **Errors** (2 messages)
+  - [league_error.json](doc/message-examples/errors/league_error.json)
+  - [game_error.json](doc/message-examples/errors/game_error.json)
+
+### Architecture Diagrams
+Visual representations of system architecture in `doc/diagrams/`:
+
+- **[architecture.md](doc/diagrams/architecture.md)** - Three-layer architecture, port allocation, SHARED directory structure
+- **[message-flow.md](doc/diagrams/message-flow.md)** - Sequence diagrams for registration, match execution, round lifecycle, error handling
+- **[state-machines.md](doc/diagrams/state-machines.md)** - Agent lifecycle, match states, circuit breaker states
+
+### Additional Documentation
+- **[PRD.md](PRD.md)** - Product Requirements Document
+- **[DESIGN.md](DESIGN.md)** - Architecture Design Document
+- **[TASKS.md](TASKS.md)** - Implementation Tasks
+- **[QUICKSTART.md](QUICKSTART.md)** - Quick Start Guide
+- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** - Implementation Summary
 
 ---
 

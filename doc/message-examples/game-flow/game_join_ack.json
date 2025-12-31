@@ -1,0 +1,11 @@
+{
+  "protocol": "league.v2",
+  "message_type": "GAME_JOIN_ACK",
+  "sender": "player:P01",
+  "timestamp": "2025-12-31T10:15:06Z",
+  "conversation_id": "conv_match_R1M1",
+  "auth_token": "tok_p1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6",
+  "match_id": "R1M1",
+  "accept": true,
+  "arrival_timestamp": "2025-12-31T10:15:06Z"
+}

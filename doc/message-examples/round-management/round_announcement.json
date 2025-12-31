@@ -1,0 +1,26 @@
+{
+  "protocol": "league.v2",
+  "message_type": "ROUND_ANNOUNCEMENT",
+  "sender": "league_manager",
+  "timestamp": "2025-12-31T10:15:00Z",
+  "conversation_id": "conv_round_1",
+  "auth_token": "tok_league_manager_token",
+  "round_id": 1,
+  "league_id": "league_2025_even_odd",
+  "matches": [
+    {
+      "match_id": "R1M1",
+      "game_type": "even_odd",
+      "player_A_id": "P01",
+      "player_B_id": "P02",
+      "referee_endpoint": "http://localhost:8001/mcp"
+    },
+    {
+      "match_id": "R1M2",
+      "game_type": "even_odd",
+      "player_A_id": "P03",
+      "player_B_id": "P04",
+      "referee_endpoint": "http://localhost:8002/mcp"
+    }
+  ]
+}

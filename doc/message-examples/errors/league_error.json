@@ -1,0 +1,16 @@
+{
+  "protocol": "league.v2",
+  "message_type": "LEAGUE_ERROR",
+  "sender": "league_manager",
+  "timestamp": "2025-12-31T10:05:00Z",
+  "conversation_id": "conv_error_auth",
+  "auth_token": "",
+  "error_code": "E012",
+  "error_description": "AUTH_TOKEN_INVALID",
+  "context": {
+    "attempted_action": "ROUND_ANNOUNCEMENT",
+    "player_id": "P01",
+    "received_token": "tok_invalid_token",
+    "message": "The provided authentication token is invalid or has expired. Please re-register."
+  }
+}

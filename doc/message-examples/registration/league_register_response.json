@@ -1,0 +1,12 @@
+{
+  "protocol": "league.v2",
+  "message_type": "LEAGUE_REGISTER_RESPONSE",
+  "sender": "league_manager",
+  "timestamp": "2025-12-31T10:01:01Z",
+  "conversation_id": "conv_player_reg_001",
+  "auth_token": "",
+  "status": "ACCEPTED",
+  "player_id": "P01",
+  "auth_token": "tok_p1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6",
+  "league_id": "league_2025_even_odd"
+}
