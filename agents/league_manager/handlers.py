@@ -4,8 +4,6 @@ Message handlers for League Manager.
 Handles registration requests and match result reports.
 """
 
-import hashlib
-import secrets
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 import asyncio
@@ -20,6 +18,7 @@ from SHARED.league_sdk.models import (
 from SHARED.league_sdk.logger import JsonLogger
 from SHARED.league_sdk.repositories import StandingsRepository, RoundsRepository
 from SHARED.league_sdk.mcp_client import MCPClient
+from SHARED.league_sdk.auth import JWTAuthenticator
 from .standings import StandingsCalculator
 
 
@@ -29,7 +28,8 @@ class RegistrationHandler:
     def __init__(
         self,
         league_id: str,
-        logger: JsonLogger
+        logger: JsonLogger,
+        jwt_authenticator: Optional[JWTAuthenticator] = None
     ):
         """
         Initialize registration handler.
@@ -37,26 +37,63 @@ class RegistrationHandler:
         Args:
             league_id: League identifier
             logger: Logger instance
+            jwt_authenticator: JWT authenticator instance (creates new if None)
         """
         self.league_id = league_id
         self.logger = logger
+        self.jwt_auth = jwt_authenticator or JWTAuthenticator()
 
         # In-memory registries
         self.registered_referees: Dict[str, Dict] = {}
         self.registered_players: Dict[str, Dict] = {}
-        self.auth_tokens: Dict[str, str] = {}  # token -> agent_id
 
-    def generate_auth_token(self, agent_id: str) -> str:
-        """Generate authentication token for agent"""
-        nonce = secrets.token_hex(16)
-        payload = f"{agent_id}:{self.league_id}:{nonce}:{datetime.utcnow().isoformat()}"
-        hash_value = hashlib.sha256(payload.encode()).hexdigest()[:32]
-        token = f"tok_{hash_value}"
+    def generate_auth_token(self, agent_id: str, agent_type: str) -> str:
+        """
+        Generate JWT authentication token for agent.
 
-        # Store token mapping
-        self.auth_tokens[token] = agent_id
+        Args:
+            agent_id: Agent identifier (e.g., "P01", "REF01")
+            agent_type: Type of agent ("player" or "referee")
+
+        Returns:
+            JWT token string
+        """
+        token = self.jwt_auth.generate_token(
+            agent_id=agent_id,
+            league_id=self.league_id,
+            agent_type=agent_type
+        )
 
         return token
+
+    def validate_token(self, token: str) -> Optional[Dict]:
+        """
+        Validate a JWT token and return its payload.
+
+        Args:
+            token: JWT token to validate
+
+        Returns:
+            Token payload if valid, None otherwise
+        """
+        return self.jwt_auth.validate_token(token)
+
+    def validate_auth_token(self, token: str, agent_id: str) -> bool:
+        """
+        Validate that a token belongs to a specific agent.
+
+        Args:
+            token: JWT token to validate
+            agent_id: Agent ID to verify against
+
+        Returns:
+            True if token is valid and belongs to the agent, False otherwise
+        """
+        return self.jwt_auth.verify_agent_access(
+            token=token,
+            required_agent_id=agent_id,
+            required_league_id=self.league_id
+        )
 
     def handle_referee_registration(
         self,
@@ -74,8 +111,8 @@ class RegistrationHandler:
         referee_meta = request.referee_meta
         referee_id = f"REF{len(self.registered_referees) + 1:02d}"
 
-        # Generate auth token
-        auth_token = self.generate_auth_token(referee_id)
+        # Generate JWT auth token
+        auth_token = self.generate_auth_token(referee_id, agent_type="referee")
 
         # Store referee info
         self.registered_referees[referee_id] = {
@@ -120,8 +157,8 @@ class RegistrationHandler:
         player_meta = request.player_meta
         player_id = f"P{len(self.registered_players) + 1:02d}"
 
-        # Generate auth token
-        auth_token = self.generate_auth_token(player_id)
+        # Generate JWT auth token
+        auth_token = self.generate_auth_token(player_id, agent_type="player")
 
         # Store player info
         self.registered_players[player_id] = {
@@ -148,10 +185,6 @@ class RegistrationHandler:
             auth_token=auth_token,
             league_id=self.league_id
         )
-
-    def validate_auth_token(self, token: str, expected_agent_id: str) -> bool:
-        """Validate authentication token"""
-        return self.auth_tokens.get(token) == expected_agent_id
 
 
 class ResultHandler:

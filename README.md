@@ -1,8 +1,18 @@
 # MCP Even/Odd League Multi-Agent System
 
+[![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![Tests](https://img.shields.io/badge/tests-227%20passing-brightgreen.svg)]()
+[![Coverage](https://img.shields.io/badge/coverage-71%25-brightgreen.svg)]()
+[![License](https://img.shields.io/badge/license-Educational-blue.svg)]()
+[![Protocol](https://img.shields.io/badge/protocol-league.v2-orange.svg)]()
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Type Hints](https://img.shields.io/badge/type%20hints-mypy-blue.svg)](http://mypy-lang.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-009688.svg)](https://fastapi.tiangolo.com)
+[![JWT](https://img.shields.io/badge/auth-JWT-orange.svg)](https://jwt.io/)
+
 A distributed multi-agent system implementing the Model Context Protocol (MCP) league.v2 specification for autonomous AI agents competing in Even/Odd games through a tournament league.
 
-**Version**: 1.0
+**Version**: 1.0.0
 **Protocol**: league.v2
 **Course**: Large Language Models - Homework 7
 **Instructor**: Dr. Yoram Segal
@@ -365,6 +375,56 @@ Defines all agents in the system:
 2. Add new player entry with unique ID and port
 3. Start the new player agent with appropriate environment variables
 
+### Environment Variables
+
+The system supports configuration via environment variables. See `.env.example` for a complete list.
+
+#### Core Environment Variables
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `LEAGUE_JWT_SECRET` | Yes* | auto-generated | JWT signing key (32+ chars) |
+| `JWT_EXPIRY_HOURS` | No | 24 | Token expiration time |
+| `LEAGUE_ID` | No | TEST_LEAGUE | League identifier |
+| `LOG_LEVEL` | No | INFO | Logging level (DEBUG/INFO/WARNING/ERROR) |
+| `REQUEST_TIMEOUT_SECONDS` | No | 30 | HTTP request timeout |
+
+**Required for production, auto-generated in development*
+
+#### Setup Example
+
+```bash
+# 1. Copy the example file
+cp .env.example .env
+
+# 2. Generate a secure JWT secret
+python -c "import secrets; print(secrets.token_hex(32))"
+
+# 3. Edit .env and set LEAGUE_JWT_SECRET
+nano .env
+
+# 4. Export environment variables
+export LEAGUE_JWT_SECRET="your-generated-secret-here"
+export JWT_EXPIRY_HOURS=4
+export LOG_LEVEL=DEBUG
+
+# 5. Start the league
+python agents/league_manager/main.py
+```
+
+#### Production Configuration
+
+For production deployments, **always set**:
+
+```bash
+export LEAGUE_JWT_SECRET=$(python -c "import secrets; print(secrets.token_hex(32))")
+export JWT_EXPIRY_HOURS=2
+export ENABLE_HTTPS=true
+export ENABLE_RATE_LIMITING=true
+```
+
+See `SECURITY.md` for complete production hardening checklist.
+
 ---
 
 ## Usage
@@ -583,6 +643,270 @@ CREATED → WAITING_FOR_PLAYERS → COLLECTING_CHOICES → DRAWING_NUMBER → FI
 ```
 INIT → REGISTERING → REGISTERED → ACTIVE → SHUTDOWN
 ```
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+### General Questions
+
+#### Q: What is the MCP Even/Odd League?
+**A:** A distributed multi-agent system where AI agents compete in Even/Odd games through a tournament league, implementing the Model Context Protocol (MCP) league.v2 specification.
+
+#### Q: What programming languages are supported?
+**A:** The core system is implemented in Python 3.10+. Agents can be implemented in any language that supports HTTP and JSON-RPC 2.0.
+
+#### Q: Can I use this project for my own research or homework?
+**A:** Yes! This project is designed for educational purposes. Please cite appropriately if used in academic work.
+
+### Setup and Configuration
+
+#### Q: What ports do agents use?
+**A:**
+- **League Manager**: Port 8000
+- **Referees**: Ports 8001-8010
+- **Players**: Ports 8101-8200
+
+You can configure these in `.env` or `config/system.json`.
+
+#### Q: How do I change the JWT secret for production?
+**A:**
+```bash
+# Generate a secure secret
+python -c "import secrets; print(secrets.token_hex(32))"
+
+# Set in environment
+export LEAGUE_JWT_SECRET="your-generated-secret-here"
+```
+
+See `SECURITY.md` for complete production hardening guide.
+
+#### Q: How do I add more players to the league?
+**A:**
+1. Edit `config/agents/agents_config.json`
+2. Add new player entry with unique ID and port
+3. Start the player agent:
+   ```bash
+   PLAYER_ID=P05 PORT=8105 STRATEGY=random python -m agents.player.main
+   ```
+
+#### Q: Can I run multiple tournaments in parallel?
+**A:** Yes! Use different league IDs and port ranges:
+```bash
+# Tournament 1
+LEAGUE_ID=TOURNAMENT_A LEAGUE_MANAGER_PORT=8000 python -m agents.league_manager.main
+
+# Tournament 2
+LEAGUE_ID=TOURNAMENT_B LEAGUE_MANAGER_PORT=9000 python -m agents.league_manager.main
+```
+
+### Player Strategies
+
+#### Q: How do I create a custom player strategy?
+**A:** See `docs/examples/02_custom_strategy.md` for a complete tutorial. Quick example:
+
+```python
+from agents.player.strategy import RandomStrategy
+from SHARED.league_sdk.models import ParityChoice
+
+class MyStrategy(RandomStrategy):
+    def choose(self, opponent_id: str, match_history: list) -> ParityChoice:
+        # Your custom logic here
+        if len(match_history) > 0 and match_history[-1]["result"] == "LOSS":
+            # Switch strategy after a loss
+            return ParityChoice.ODD
+        return ParityChoice.EVEN
+```
+
+#### Q: What strategies are available out of the box?
+**A:**
+- **random**: Random choice (50/50)
+- **pattern**: Pattern-based opponent analysis with 60% confidence threshold
+
+Configure in `config/agents/agents_config.json` or via `STRATEGY` environment variable.
+
+#### Q: Can I use an LLM (ChatGPT, Claude) as a player strategy?
+**A:** Yes! Implement a strategy that calls an LLM API:
+
+```python
+import openai
+
+class LLMStrategy:
+    def choose(self, opponent_id: str, match_history: list) -> ParityChoice:
+        prompt = f"Based on this history {match_history}, choose 'even' or 'odd'"
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        choice = response.choices[0].message.content.lower()
+        return ParityChoice.EVEN if "even" in choice else ParityChoice.ODD
+```
+
+### Debugging and Troubleshooting
+
+#### Q: Where are the log files located?
+**A:**
+- **League Manager**: `data/logs/system/league_manager.log.jsonl`
+- **Referees**: `data/logs/agents/REF01.log.jsonl`
+- **Players**: `data/logs/agents/P01.log.jsonl`
+
+Logs are in JSONL format (one JSON object per line) for easy parsing.
+
+#### Q: How do I increase log verbosity for debugging?
+**A:**
+```bash
+export LOG_LEVEL=DEBUG
+python -m agents.league_manager.main
+```
+
+Or edit `config/system.json` and set `"log_level": "DEBUG"`.
+
+#### Q: A match is timing out. How do I fix it?
+**A:** Increase timeout values in `.env`:
+```bash
+JOIN_TIMEOUT_SECONDS=10  # Default: 5
+MOVE_TIMEOUT_SECONDS=60  # Default: 30
+```
+
+Or in `config/system.json`:
+```json
+{
+  "timeouts": {
+    "game_join_ack_timeout_sec": 10,
+    "move_timeout_sec": 60
+  }
+}
+```
+
+#### Q: How do I reset the league and start fresh?
+**A:**
+```bash
+# Stop all agents
+pkill -f "agents.league_manager.main"
+pkill -f "agents.referee.main"
+pkill -f "agents.player.main"
+
+# Clean runtime data
+python scripts/cleanup.py
+
+# Or manually
+rm -rf data/leagues/* data/matches/* data/logs/*
+
+# Restart league
+python scripts/start_league.py
+```
+
+### Testing and Development
+
+#### Q: How do I run the tests?
+**A:**
+```bash
+# All tests
+pytest
+
+# With coverage report
+pytest --cov=SHARED --cov=agents --cov-report=term-missing
+
+# Specific test file
+pytest tests/test_jwt_auth.py
+
+# Verbose output
+pytest -v
+```
+
+#### Q: What is the test coverage requirement?
+**A:** Minimum **70% coverage** for all code. Current coverage: **71%** (227 passing tests).
+
+#### Q: How do I run the performance benchmarks?
+**A:**
+```bash
+# Default (1000 iterations)
+python -m scripts.benchmark
+
+# Custom iterations
+python -m scripts.benchmark -i 5000
+
+# Custom output file
+python -m scripts.benchmark -o my_results.json
+```
+
+See `docs/BENCHMARKS.md` for complete performance analysis.
+
+### API and Integration
+
+#### Q: Where is the API documentation?
+**A:** See `docs/API.md` for complete API reference. Interactive API docs available at:
+- League Manager: http://localhost:8000/docs
+- Referee: http://localhost:8001/docs
+- Player: http://localhost:8101/docs
+
+#### Q: Can I integrate external services (databases, message queues)?
+**A:** Yes! The architecture is designed for extensibility:
+- Replace `repositories.py` with database implementations
+- Add message queue support in `mcp_client.py`
+- Implement custom authentication in `auth.py`
+
+See `CONTRIBUTING.md` for development guidelines.
+
+#### Q: Is there a Python SDK for building custom agents?
+**A:** Yes! Use the shared SDK:
+```python
+from SHARED.league_sdk.mcp_client import MCPClient
+from SHARED.league_sdk.models import LeagueRegisterRequest
+
+async with MCPClient() as client:
+    response = await client.call_tool(
+        endpoint="http://localhost:8000/mcp",
+        method="register_player",
+        params={...}
+    )
+```
+
+### Performance and Scaling
+
+#### Q: How many players can the system handle?
+**A:**
+- **Default**: 10 players (configurable via `MAX_PLAYERS`)
+- **Tested**: Up to 20 players in our benchmarks
+- **Theoretical**: Limited by available ports and system resources
+
+Round-Robin scheduling complexity: O(n²) where n = number of players.
+
+#### Q: What are the performance benchmarks?
+**A:** Key metrics (from `docs/BENCHMARKS.md`):
+- **JWT operations**: ~30,000 ops/sec
+- **Message processing**: ~150,000 ops/sec
+- **Game simulation**: ~136,000 games/sec
+- **Repository I/O**: ~1,500 writes/sec (bottleneck)
+
+#### Q: Can I run this in production?
+**A:** The system is designed for educational use. For production:
+1. Read `SECURITY.md` - complete hardening checklist
+2. Set strong JWT secrets (32+ characters)
+3. Enable HTTPS with valid certificates
+4. Add rate limiting (slowapi)
+5. Use proper database (PostgreSQL, MongoDB) instead of JSON files
+6. Implement monitoring and alerting
+
+### Contributing
+
+#### Q: How do I contribute to this project?
+**A:** See `CONTRIBUTING.md` for complete guidelines. Quick steps:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes with tests
+4. Submit a pull request
+
+#### Q: What coding standards do you follow?
+**A:**
+- **Formatting**: Black (line length 100)
+- **Linting**: Flake8
+- **Type Checking**: mypy with strict mode
+- **Docstrings**: Google style
+- **Testing**: pytest with 70%+ coverage
+
+#### Q: I found a security vulnerability. What should I do?
+**A:** **DO NOT** report it publicly. See `SECURITY.md` for responsible disclosure process.
 
 ---
 

@@ -1,0 +1,136 @@
+{
+  "timestamp": "2025-12-31T20:23:37.851320+00:00",
+  "iterations": 1000,
+  "benchmarks": [
+    {
+      "name": "JWT Token Generation",
+      "iterations": 1000,
+      "mean_ms": 0.03251522495702375,
+      "median_ms": 0.0262414978351444,
+      "stdev_ms": 0.019302424514478222,
+      "min_ms": 0.020988998585380614,
+      "max_ms": 0.20300500909797847,
+      "throughput_ops_per_sec": 30754.823358033875
+    },
+    {
+      "name": "JWT Token Validation",
+      "iterations": 1000,
+      "mean_ms": 0.0320263322792016,
+      "median_ms": 0.026098001399077475,
+      "stdev_ms": 0.022081157494110108,
+      "min_ms": 0.01816899748519063,
+      "max_ms": 0.37302500277291983,
+      "throughput_ops_per_sec": 31224.306026744613
+    },
+    {
+      "name": "JWT Access Verification",
+      "iterations": 1000,
+      "mean_ms": 0.02813020815665368,
+      "median_ms": 0.024235494493041188,
+      "stdev_ms": 0.015074358604484504,
+      "min_ms": 0.018678998458199203,
+      "max_ms": 0.2659720048541203,
+      "throughput_ops_per_sec": 35548.97263579148
+    },
+    {
+      "name": "Message Serialization (Pydantic)",
+      "iterations": 1000,
+      "mean_ms": 0.005339889088645577,
+      "median_ms": 0.00437400012742728,
+      "stdev_ms": 0.005912652290520044,
+      "min_ms": 0.004289002390578389,
+      "max_ms": 0.1525109983049333,
+      "throughput_ops_per_sec": 187269.80718126532
+    },
+    {
+      "name": "Message Deserialization (Pydantic)",
+      "iterations": 1000,
+      "mean_ms": 0.006300043052760884,
+      "median_ms": 0.0047570065362378955,
+      "stdev_ms": 0.006244104232304112,
+      "min_ms": 0.004556000931188464,
+      "max_ms": 0.1489990099798888,
+      "throughput_ops_per_sec": 158729.07401192558
+    },
+    {
+      "name": "Random Strategy Choice",
+      "iterations": 10000,
+      "mean_ms": 0.0008417770935920998,
+      "median_ms": 0.0007239868864417076,
+      "stdev_ms": 0.0013572640009708594,
+      "min_ms": 0.0004469911800697446,
+      "max_ms": 0.06920399027876556,
+      "throughput_ops_per_sec": 1187962.9507768126
+    },
+    {
+      "name": "Pattern Strategy Choice",
+      "iterations": 10000,
+      "mean_ms": 0.0011263116146437823,
+      "median_ms": 0.0010849907994270325,
+      "stdev_ms": 0.0007162584017589618,
+      "min_ms": 0.0010429939720779657,
+      "max_ms": 0.04104200343135744,
+      "throughput_ops_per_sec": 887853.7582303714
+    },
+    {
+      "name": "Game Simulation",
+      "iterations": 10000,
+      "mean_ms": 0.007320123301178682,
+      "median_ms": 0.005980997229926288,
+      "stdev_ms": 0.004766831892605457,
+      "min_ms": 0.005779002094641328,
+      "max_ms": 0.13956900511402637,
+      "throughput_ops_per_sec": 136609.72074595798
+    },
+    {
+      "name": "Standings Calculation (10 players)",
+      "iterations": 5000,
+      "mean_ms": 0.0749771777773276,
+      "median_ms": 0.06585200026165694,
+      "stdev_ms": 0.02904178972713641,
+      "min_ms": 0.06444599421229213,
+      "max_ms": 0.9194140002364293,
+      "throughput_ops_per_sec": 13337.391852356315
+    },
+    {
+      "name": "Round-Robin Scheduler (8 players)",
+      "iterations": 1000,
+      "mean_ms": 0.1254243299481459,
+      "median_ms": 0.09480800508754328,
+      "stdev_ms": 0.71010137095047,
+      "min_ms": 0.09221601067110896,
+      "max_ms": 22.547119006048888,
+      "throughput_ops_per_sec": 7972.9347600535675
+    },
+    {
+      "name": "Repository Write (Standings)",
+      "iterations": 1000,
+      "mean_ms": 0.6315666429727571,
+      "median_ms": 0.5991559955873527,
+      "stdev_ms": 0.2604360038589983,
+      "min_ms": 0.2527309989091009,
+      "max_ms": 5.6938799971248955,
+      "throughput_ops_per_sec": 1583.364180370646
+    },
+    {
+      "name": "Repository Read (Standings)",
+      "iterations": 1000,
+      "mean_ms": 0.044051155069610104,
+      "median_ms": 0.030340008379425853,
+      "stdev_ms": 0.03166403263926189,
+      "min_ms": 0.02799299545586109,
+      "max_ms": 0.35567700979299843,
+      "throughput_ops_per_sec": 22700.88033832006
+    },
+    {
+      "name": "Match Repository Create",
+      "iterations": 500,
+      "mean_ms": 0.4165552979102358,
+      "median_ms": 0.29635499959113076,
+      "stdev_ms": 0.6416472851505292,
+      "min_ms": 0.09692000458016992,
+      "max_ms": 13.306153006851673,
+      "throughput_ops_per_sec": 2400.6416555419532
+    }
+  ]
+}
