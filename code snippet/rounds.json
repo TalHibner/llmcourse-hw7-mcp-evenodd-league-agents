@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "league_id": "league_2025_even_odd",
+  "last_updated": "2025-01-15T12:00:00Z",
+  "rounds": [
+    {
+      "round_id": 1,
+      "status": "COMPLETED",
+      "start_time": "2025-01-15T10:10:00Z",
+      "end_time": "2025-01-15T10:25:00Z",
+      "matches": [
+        {
+          "match_id": "R1M1",
+          "player_A_id": "P01",
+          "player_B_id": "P02",
+          "referee_id": "REF01",
+          "result": "WIN",
+          "winner": "P01"
+        },
+        {
+          "match_id": "R1M2",
+          "player_A_id": "P03",
+          "player_B_id": "P04",
+          "referee_id": "REF01",
+          "result": "DRAW",
+          "winner": null
+        }
+      ]
+    },
+    {
+      "round_id": 2,
+      "status": "COMPLETED",
+      "start_time": "2025-01-15T10:30:00Z",
+      "end_time": "2025-01-15T10:45:00Z",
+      "matches": [
+        {
+          "match_id": "R2M1",
+          "player_A_id": "P01",
+          "player_B_id": "P03",
+          "referee_id": "REF02",
+          "result": "WIN",
+          "winner": "P01"
+        },
+        {
+          "match_id": "R2M2",
+          "player_A_id": "P02",
+          "player_B_id": "P04",
+          "referee_id": "REF02",
+          "result": "WIN",
+          "winner": "P02"
+        }
+      ]
+    },
+    {
+      "round_id": 3,
+      "status": "COMPLETED",
+      "start_time": "2025-01-15T11:00:00Z",
+      "end_time": "2025-01-15T11:15:00Z",
+      "matches": [
+        {
+          "match_id": "R3M1",
+          "player_A_id": "P01",
+          "player_B_id": "P04",
+          "referee_id": "REF01",
+          "result": "WIN",
+          "winner": "P04"
+        },
+        {
+          "match_id": "R3M2",
+          "player_A_id": "P02",
+          "player_B_id": "P03",
+          "referee_id": "REF01",
+          "result": "WIN",
+          "winner": "P03"
+        }
+      ]
+    }
+  ]
+}

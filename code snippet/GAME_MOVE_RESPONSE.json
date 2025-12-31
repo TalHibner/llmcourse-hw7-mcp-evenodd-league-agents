@@ -1,0 +1,13 @@
+{
+    "protocol": "league.v2",
+    "message_type": "GAME_MOVE_RESPONSE",
+    "sender": "player:P01",
+    "timestamp": "20250115T10:30:20Z",
+    "match_id": "R1M1",
+    "player_id": "P01",
+    "game_type": "even_odd",
+    "move_data": {
+        "move_type": "choose_parity",
+        "choice": "even"
+    }
+}

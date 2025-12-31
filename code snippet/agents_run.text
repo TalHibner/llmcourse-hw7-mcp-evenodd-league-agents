@@ -1,0 +1,11 @@
+# Terminal 1: League Manager (start first)
+python league_manager.py # Port 8000
+
+# Terminal 2: Referee
+python referee.py # Port 8001
+
+# Terminal 3-6: Players
+python player.py --port 8101
+python player.py --port 8102
+python player.py --port 8103
+python player.py --port 8104

@@ -1,0 +1,21 @@
+{
+  "message_type": "MATCH_RESULT_REPORT",
+  "league_id": "league_2025_even_odd",
+  "round_id": 1,
+  "match_id": "R1M1",
+  "game_type": "even_odd",
+  "result": {
+    "winner": "P01",
+    "score": {
+      "P01": 3,
+      "P02": 0
+    },
+    "details": {
+      "drawn_number": 8,
+      "choices": {
+        "P01": "even",
+        "P02": "odd"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "default_settings": {
+    "version": "1.0.0",
+    "game_types": ["even_odd"],
+    "strategy": "random",
+    "timeout_settings": {
+      "response_timeout_sec": 10
+    },
+    "logging": {
+      "level": "INFO",
+      "format": "jsonl"
+    },
+    "memory": {
+      "keep_match_history": true,
+      "max_history_size": 1000
+    }
+  }
+}

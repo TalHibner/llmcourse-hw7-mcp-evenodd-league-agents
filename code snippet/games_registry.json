@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-01-15T09:00:00Z",
+  "games": [
+    {
+      "game_type": "even_odd",
+      "display_name": "Even or Odd",
+      "rules_module": "even_odd_rules",
+      "max_round_time_sec": 30,
+      "description": "Players choose even or odd, referee draws a number 0-100",
+      "min_players": 2,
+      "max_players": 2,
+      "supported": true
+    }
+  ]
+}

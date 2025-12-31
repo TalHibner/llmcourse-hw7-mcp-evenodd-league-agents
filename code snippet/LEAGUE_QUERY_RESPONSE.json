@@ -1,0 +1,17 @@
+{
+    "protocol": "league.v2",
+    "message_type": "LEAGUE_QUERY_RESPONSE",
+    "sender": "league_manager",
+    "timestamp": "20250115T14:00:01Z",
+    "conversation_id": "convquery001",
+    "query_type": "GET_NEXT_MATCH",
+    "success": true,
+    "data": {
+        "next_match": {
+            "match_id": "R2M1",
+            "round_id": 2,
+            "opponent_id": "P03",
+            "referee_endpoint": "http://localhost:8001/mcp"
+        }
+    }
+}

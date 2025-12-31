@@ -1,0 +1,7 @@
+{
+  "message_type": "GAME_JOIN_ACK",
+  "match_id": "R1M1",
+  "player_id": "P01",
+  "arrival_timestamp": "2025-01-15T10:30:00Z",
+  "accept": true
+}

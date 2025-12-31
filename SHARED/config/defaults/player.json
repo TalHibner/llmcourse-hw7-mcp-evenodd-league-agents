@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "game_types": ["even_odd"],
+  "default_strategy": "random",
+  "response_timeout_sec": 3,
+  "strategies": {
+    "random": {
+      "description": "Randomly choose even or odd with 50/50 probability"
+    },
+    "pattern_based": {
+      "description": "Analyze opponent history and adapt choices"
+    }
+  }
+}

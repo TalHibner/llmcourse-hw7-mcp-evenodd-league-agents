@@ -1,0 +1,11 @@
+{
+  "games": [
+    {
+      "game_type_id": "even_odd",
+      "display_name": "Even/Odd Number Game",
+      "description": "Players simultaneously choose 'even' or 'odd'. A number is drawn. Winner is who chose correctly.",
+      "min_players": 2,
+      "max_players": 2
+    }
+  ]
+}

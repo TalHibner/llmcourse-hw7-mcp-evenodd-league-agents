@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "player_id": "P01",
+  "display_name": "Agent Alpha",
+  "last_updated": "2025-01-15T12:00:00Z",
+  "stats": {
+    "total_matches": 20,
+    "wins": 12,
+    "losses": 5,
+    "draws": 3,
+    "total_points": 39,
+    "win_rate": 0.60
+  },
+  "matches": [
+    {
+      "match_id": "R1M1",
+      "timestamp": "2025-01-15T10:15:30Z",
+      "opponent_id": "P02",
+      "result": "WIN",
+      "my_choice": "even",
+      "opponent_choice": "odd",
+      "drawn_number": 8,
+      "points_earned": 3
+    },
+    {
+      "match_id": "R1M3",
+      "timestamp": "2025-01-15T10:30:00Z",
+      "opponent_id": "P03",
+      "result": "DRAW",
+      "my_choice": "odd",
+      "opponent_choice": "odd",
+      "drawn_number": 7,
+      "points_earned": 1
+    },
+    {
+      "match_id": "R2M1",
+      "timestamp": "2025-01-15T10:45:00Z",
+      "opponent_id": "P04",
+      "result": "WIN",
+      "my_choice": "even",
+      "opponent_choice": "odd",
+      "drawn_number": 42,
+      "points_earned": 3
+    }
+  ],
+  "opponent_patterns": {
+    "P02": {
+      "matches_played": 5,
+      "wins_against": 3,
+      "common_choice": "odd",
+      "choice_frequency": {"even": 0.2, "odd": 0.8}
+    },
+    "P03": {
+      "matches_played": 5,
+      "wins_against": 2,
+      "common_choice": "even",
+      "choice_frequency": {"even": 0.6, "odd": 0.4}
+    },
+    "P04": {
+      "matches_played": 5,
+      "wins_against": 4,
+      "common_choice": "odd",
+      "choice_frequency": {"even": 0.3, "odd": 0.7}
+    }
+  },
+  "strategy_notes": "Player shows strong performance, adapting choices based on opponent patterns"
+}

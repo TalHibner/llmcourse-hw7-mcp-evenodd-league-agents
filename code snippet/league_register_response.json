@@ -1,0 +1,6 @@
+{
+  "message_type": "LEAGUE_REGISTER_RESPONSE",
+  "status": "ACCEPTED",
+  "player_id": "P01",
+  "reason": null
+}

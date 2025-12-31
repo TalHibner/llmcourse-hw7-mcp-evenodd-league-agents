@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "game_types": ["even_odd"],
+  "max_concurrent_matches": 2,
+  "timeouts": {
+    "join_ack_sec": 5,
+    "move_sec": 30
+  },
+  "retry": {
+    "max_attempts": 3,
+    "backoff_base_sec": 1
+  }
+}

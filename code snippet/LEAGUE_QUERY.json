@@ -1,0 +1,13 @@
+{
+    "protocol": "league.v2",
+    "message_type": "LEAGUE_QUERY",
+    "sender": "player:P01",
+    "timestamp": "20250115T14:00:00Z",
+    "conversation_id": "conv-query-001",
+    "auth_token": "tok_p01_abc123...",
+    "league_id": "league_2025_even_odd",
+    "query_type": "GET_NEXT_MATCH",
+    "query_params": {
+        "player_id": "P01"
+    }
+}

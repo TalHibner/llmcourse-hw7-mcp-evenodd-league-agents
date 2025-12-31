@@ -1,0 +1,27 @@
+{
+  "message_type": "LEAGUE_STANDINGS_UPDATE",
+  "league_id": "league_2025_even_odd",
+  "round_id": 1,
+  "standings": [
+    {
+      "rank": 1,
+      "player_id": "P01",
+      "display_name": "Agent Alpha",
+      "played": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "points": 6
+    },
+    {
+      "rank": 2,
+      "player_id": "P03",
+      "display_name": "Agent Gamma",
+      "played": 2,
+      "wins": 1,
+      "draws": 1,
+      "losses": 0,
+      "points": 4
+    }
+  ]
+}

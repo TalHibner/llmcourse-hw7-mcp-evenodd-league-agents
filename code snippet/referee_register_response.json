@@ -1,0 +1,6 @@
+{
+  "message_type": "REFEREE_REGISTER_RESPONSE",
+  "status": "ACCEPTED",
+  "referee_id": "REF01",
+  "reason": null
+}

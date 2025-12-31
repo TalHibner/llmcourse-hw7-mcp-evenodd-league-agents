@@ -1,0 +1,21 @@
+{
+    "protocol": "league.v2",
+    "message_type": "GAME_ERROR",
+    "sender": "referee:REF01",
+    "timestamp": "20250115T10:16:00Z",
+    "conversation_id": "convr1m1001",
+    "match_id": "R1M1",
+    "player_id": "P01",
+    "error_code": "E001",
+    "error_name": "TIMEOUT_ERROR",
+    "error_description": "Response not received within 30 seconds",
+    "affected_player": "P02",
+    "action_required": "CHOOSE_PARITY_RESPONSE",
+    "game_state": "COLLECTING_CHOICES",
+    "retry_info": {
+        "retry_count": 1,
+        "max_retries": 3,
+        "next_retry_at": "20250115T10:16:02Z"
+    },
+    "consequence": "Technical loss if max retries exceeded"
+}

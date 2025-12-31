@@ -1,0 +1,16 @@
+{
+  "message_type": "GAME_OVER",
+  "match_id": "R1M1",
+  "game_type": "even_odd",
+  "game_result": {
+    "status": "WIN",
+    "winner_player_id": "P01",
+    "drawn_number": 8,
+    "number_parity": "even",
+    "choices": {
+      "P01": "even",
+      "P02": "odd"
+    },
+    "reason": "P01 chose even, number was 8 (even)"
+  }
+}

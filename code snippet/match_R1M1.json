@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "match_id": "R1M1",
+  "league_id": "league_2025_even_odd",
+  "round_id": 1,
+  "game_type": "even_odd",
+  "referee_id": "REF01",
+  "player_A_id": "P01",
+  "player_B_id": "P02",
+  "lifecycle": {
+    "created_at": "2025-01-15T10:10:00Z",
+    "started_at": "2025-01-15T10:15:00Z",
+    "completed_at": "2025-01-15T10:15:30Z",
+    "duration_sec": 30,
+    "state_transitions": [
+      {"state": "CREATED", "timestamp": "2025-01-15T10:10:00Z"},
+      {"state": "WAITING_FOR_PLAYERS", "timestamp": "2025-01-15T10:15:00Z"},
+      {"state": "COLLECTING_CHOICES", "timestamp": "2025-01-15T10:15:05Z"},
+      {"state": "DRAWING_NUMBER", "timestamp": "2025-01-15T10:15:15Z"},
+      {"state": "FINISHED", "timestamp": "2025-01-15T10:15:30Z"}
+    ]
+  },
+  "transcript": [
+    {
+      "seq": 1,
+      "timestamp": "2025-01-15T10:15:00Z",
+      "message_type": "GAME_INVITATION",
+      "from": "referee:REF01",
+      "to": "player:P01"
+    },
+    {
+      "seq": 2,
+      "timestamp": "2025-01-15T10:15:00Z",
+      "message_type": "GAME_INVITATION",
+      "from": "referee:REF01",
+      "to": "player:P02"
+    },
+    {
+      "seq": 3,
+      "timestamp": "2025-01-15T10:15:01Z",
+      "message_type": "GAME_JOIN_ACK",
+      "from": "player:P01",
+      "to": "referee:REF01"
+    },
+    {
+      "seq": 4,
+      "timestamp": "2025-01-15T10:15:02Z",
+      "message_type": "GAME_JOIN_ACK",
+      "from": "player:P02",
+      "to": "referee:REF01"
+    },
+    {
+      "seq": 5,
+      "timestamp": "2025-01-15T10:15:05Z",
+      "message_type": "CHOOSE_PARITY_CALL",
+      "from": "referee:REF01",
+      "to": "player:P01"
+    },
+    {
+      "seq": 6,
+      "timestamp": "2025-01-15T10:15:05Z",
+      "message_type": "CHOOSE_PARITY_CALL",
+      "from": "referee:REF01",
+      "to": "player:P02"
+    },
+    {
+      "seq": 7,
+      "timestamp": "2025-01-15T10:15:10Z",
+      "message_type": "CHOOSE_PARITY_RESPONSE",
+      "from": "player:P01",
+      "to": "referee:REF01",
+      "choice": "even"
+    },
+    {
+      "seq": 8,
+      "timestamp": "2025-01-15T10:15:12Z",
+      "message_type": "CHOOSE_PARITY_RESPONSE",
+      "from": "player:P02",
+      "to": "referee:REF01",
+      "choice": "odd"
+    },
+    {
+      "seq": 9,
+      "timestamp": "2025-01-15T10:15:30Z",
+      "message_type": "GAME_OVER",
+      "from": "referee:REF01",
+      "to": "both_players"
+    }
+  ],
+  "result": {
+    "status": "WIN",
+    "winner_player_id": "P01",
+    "drawn_number": 8,
+    "number_parity": "even",
+    "choices": {
+      "P01": "even",
+      "P02": "odd"
+    },
+    "score": {
+      "P01": 3,
+      "P02": 0
+    },
+    "reason": "P01 chose even, number was 8 (even)"
+  }
+}

@@ -1,0 +1,14 @@
+{"timestamp": "2025-01-15T10:00:00Z", "component": "league_manager", "event_type": "SYSTEM_STARTUP", "level": "INFO", "details": {"version": "1.0.0", "league_id": "league_2025_even_odd"}}
+{"timestamp": "2025-01-15T10:00:05Z", "component": "league_manager", "event_type": "REFEREE_REGISTERED", "level": "INFO", "details": {"referee_id": "REF01", "endpoint": "http://localhost:8001/mcp"}}
+{"timestamp": "2025-01-15T10:00:10Z", "component": "league_manager", "event_type": "REFEREE_REGISTERED", "level": "INFO", "details": {"referee_id": "REF02", "endpoint": "http://localhost:8002/mcp"}}
+{"timestamp": "2025-01-15T10:05:00Z", "component": "league_manager", "event_type": "PLAYER_REGISTERED", "level": "INFO", "details": {"player_id": "P01", "display_name": "Agent Alpha"}}
+{"timestamp": "2025-01-15T10:05:05Z", "component": "league_manager", "event_type": "PLAYER_REGISTERED", "level": "INFO", "details": {"player_id": "P02", "display_name": "Agent Beta"}}
+{"timestamp": "2025-01-15T10:05:10Z", "component": "league_manager", "event_type": "PLAYER_REGISTERED", "level": "INFO", "details": {"player_id": "P03", "display_name": "Agent Gamma"}}
+{"timestamp": "2025-01-15T10:05:15Z", "component": "league_manager", "event_type": "PLAYER_REGISTERED", "level": "INFO", "details": {"player_id": "P04", "display_name": "Agent Delta"}}
+{"timestamp": "2025-01-15T10:10:00Z", "component": "league_manager", "event_type": "SCHEDULE_CREATED", "level": "INFO", "details": {"total_matches": 6, "rounds": 3}}
+{"timestamp": "2025-01-15T10:15:00Z", "component": "league_manager", "event_type": "ROUND_ANNOUNCEMENT_SENT", "level": "INFO", "details": {"round_id": 1, "matches_count": 2}}
+{"timestamp": "2025-01-15T10:25:00Z", "component": "league_manager", "event_type": "MATCH_RESULT_RECEIVED", "level": "INFO", "details": {"match_id": "R1M1", "winner": "P01"}}
+{"timestamp": "2025-01-15T10:25:05Z", "component": "league_manager", "event_type": "MATCH_RESULT_RECEIVED", "level": "INFO", "details": {"match_id": "R1M2", "result": "DRAW"}}
+{"timestamp": "2025-01-15T10:25:10Z", "component": "league_manager", "event_type": "STANDINGS_UPDATED", "level": "INFO", "details": {"round_id": 1, "version": 1}}
+{"timestamp": "2025-01-15T10:25:15Z", "component": "league_manager", "event_type": "ROUND_COMPLETED", "level": "INFO", "details": {"round_id": 1}}
+{"timestamp": "2025-01-15T12:00:00Z", "component": "league_manager", "event_type": "LEAGUE_COMPLETED", "level": "INFO", "details": {"champion": "P01", "total_matches": 6}}

@@ -1,0 +1,17 @@
+{
+  "protocol": "league.v2",
+  "message_type": "ROUND_COMPLETED",
+  "sender": "league_manager",
+  "timestamp": "2025-01-15T12:00:00Z",
+  "conversation_id": "conv-round1-complete",
+  "league_id": "league_2025_even_odd",
+  "round_id": 1,
+  "matches_completed": 2,
+  "next_round_id": 2,
+  "summary": {
+    "total_matches": 2,
+    "wins": 1,
+    "draws": 1,
+    "technical_losses": 0
+  }
+}

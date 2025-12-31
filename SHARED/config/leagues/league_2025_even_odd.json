@@ -1,0 +1,26 @@
+{
+  "league_id": "league_2025_even_odd",
+  "display_name": "2025 Even/Odd Championship",
+  "game_type": "even_odd",
+  "format": "round_robin",
+  "scoring": {
+    "win_points": 3,
+    "draw_points": 1,
+    "loss_points": 0,
+    "technical_loss_points": 0
+  },
+  "participants": {
+    "min_players": 2,
+    "max_players": 10,
+    "registered_players": []
+  },
+  "schedule": {
+    "start_date": "2025-12-31T00:00:00Z",
+    "match_delay_sec": 5
+  },
+  "rules": {
+    "number_range_min": 1,
+    "number_range_max": 10,
+    "draw_on_both_wrong": true
+  }
+}

@@ -1,0 +1,12 @@
+{"timestamp": "2025-01-15T10:05:00Z", "component": "player:P01", "event_type": "AGENT_STARTUP", "level": "INFO", "details": {"version": "1.0.0", "strategy": "random"}}
+{"timestamp": "2025-01-15T10:05:01Z", "component": "player:P01", "event_type": "MESSAGE_SENT", "level": "DEBUG", "details": {"message_type": "LEAGUE_REGISTER_REQUEST", "recipient": "league_manager"}}
+{"timestamp": "2025-01-15T10:05:02Z", "component": "player:P01", "event_type": "MESSAGE_RECEIVED", "level": "DEBUG", "details": {"message_type": "LEAGUE_REGISTER_RESPONSE", "status": "ACCEPTED", "player_id": "P01"}}
+{"timestamp": "2025-01-15T10:15:00Z", "component": "player:P01", "event_type": "MESSAGE_RECEIVED", "level": "DEBUG", "details": {"message_type": "ROUND_ANNOUNCEMENT", "round_id": 1}}
+{"timestamp": "2025-01-15T10:15:01Z", "component": "player:P01", "event_type": "MESSAGE_RECEIVED", "level": "DEBUG", "details": {"message_type": "GAME_INVITATION", "match_id": "R1M1", "opponent": "P02"}}
+{"timestamp": "2025-01-15T10:15:02Z", "component": "player:P01", "event_type": "MESSAGE_SENT", "level": "DEBUG", "details": {"message_type": "GAME_JOIN_ACK", "match_id": "R1M1"}}
+{"timestamp": "2025-01-15T10:15:05Z", "component": "player:P01", "event_type": "MESSAGE_RECEIVED", "level": "DEBUG", "details": {"message_type": "CHOOSE_PARITY_CALL", "match_id": "R1M1"}}
+{"timestamp": "2025-01-15T10:15:10Z", "component": "player:P01", "event_type": "CHOICE_MADE", "level": "INFO", "details": {"match_id": "R1M1", "choice": "even", "strategy": "random"}}
+{"timestamp": "2025-01-15T10:15:10Z", "component": "player:P01", "event_type": "MESSAGE_SENT", "level": "DEBUG", "details": {"message_type": "CHOOSE_PARITY_RESPONSE", "match_id": "R1M1", "choice": "even"}}
+{"timestamp": "2025-01-15T10:15:30Z", "component": "player:P01", "event_type": "MESSAGE_RECEIVED", "level": "DEBUG", "details": {"message_type": "GAME_OVER", "match_id": "R1M1", "result": "WIN"}}
+{"timestamp": "2025-01-15T10:15:31Z", "component": "player:P01", "event_type": "MATCH_RESULT", "level": "INFO", "details": {"match_id": "R1M1", "opponent": "P02", "result": "WIN", "points": 3}}
+{"timestamp": "2025-01-15T10:15:32Z", "component": "player:P01", "event_type": "HISTORY_UPDATED", "level": "DEBUG", "details": {"total_matches": 1, "wins": 1}}

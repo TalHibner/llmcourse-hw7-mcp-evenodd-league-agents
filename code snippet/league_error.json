@@ -1,0 +1,17 @@
+
+{
+    "protocol": "league.v2",
+    "message_type": "LEAGUE_ERROR",
+    "sender": "league_manager",
+    "timestamp": "20250115T10:05:30Z",
+    "conversation_id": "converror001",
+    "error_code": "E012",
+    "error_name": "PLAYER_NOT_AUTHENTICATED",
+    "error_description": "AUTH_TOKEN_INVALID",
+    "original_message_type": "LEAGUE_QUERY",
+    "context": {
+        "provided_token": "tokinvalidxxx",
+        "expected_format": "tok-{agent_id}-{hash}",
+        "player_id": "P99"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "message_type": "LEAGUE_REGISTER_RESPONSE",
+    "status": "ACCEPTED",
+    "player_id": "P01",
+    "auth_token": "tok_p01_abc123def456ghi789..."
+}

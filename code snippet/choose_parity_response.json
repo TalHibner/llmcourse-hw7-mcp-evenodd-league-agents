@@ -1,0 +1,6 @@
+{
+  "message_type": "CHOOSE_PARITY_RESPONSE",
+  "match_id": "R1M1",
+  "player_id": "P01",
+  "parity_choice": "even"
+}

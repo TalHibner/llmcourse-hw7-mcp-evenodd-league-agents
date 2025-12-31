@@ -1,0 +1,62 @@
+{
+  "league_manager": {
+    "manager_id": "LEAGUE_MANAGER_01",
+    "display_name": "Central League Manager",
+    "endpoint": "http://localhost:8000/mcp",
+    "version": "1.0.0"
+  },
+  "referees": [
+    {
+      "referee_id": "REF01",
+      "display_name": "Referee Alpha",
+      "endpoint": "http://localhost:8001/mcp",
+      "version": "1.0.0",
+      "game_types": ["even_odd"],
+      "max_concurrent_matches": 2,
+      "active": true
+    },
+    {
+      "referee_id": "REF02",
+      "display_name": "Referee Beta",
+      "endpoint": "http://localhost:8002/mcp",
+      "version": "1.0.0",
+      "game_types": ["even_odd"],
+      "max_concurrent_matches": 2,
+      "active": true
+    }
+  ],
+  "players": [
+    {
+      "player_id": "P01",
+      "display_name": "Agent Alpha",
+      "endpoint": "http://localhost:8101/mcp",
+      "version": "1.0.0",
+      "game_types": ["even_odd"],
+      "strategy": "random"
+    },
+    {
+      "player_id": "P02",
+      "display_name": "Agent Beta",
+      "endpoint": "http://localhost:8102/mcp",
+      "version": "1.0.0",
+      "game_types": ["even_odd"],
+      "strategy": "pattern_based"
+    },
+    {
+      "player_id": "P03",
+      "display_name": "Agent Gamma",
+      "endpoint": "http://localhost:8103/mcp",
+      "version": "1.0.0",
+      "game_types": ["even_odd"],
+      "strategy": "random"
+    },
+    {
+      "player_id": "P04",
+      "display_name": "Agent Delta",
+      "endpoint": "http://localhost:8104/mcp",
+      "version": "1.0.0",
+      "game_types": ["even_odd"],
+      "strategy": "random"
+    }
+  ]
+}
